@@ -40,13 +40,16 @@ public class LatihanPer2 {
             index++;
             System.out.print("Tambah Lagi (Y/n) ?");
             input.nextLine();
-            validation = input.next();
-            System.out.println(validation);
-        }while("Y".equals(validation));     
+            validation = input.nextLine();
+            if ("n".equalsIgnoreCase(validation)) {
+                break; // Keluar dari loop jika pengguna memilih "n" atau "N"
+            }
+        }while("Y".equalsIgnoreCase(validation));     
         
-        for (DataBarang barangTerjual : barang) {
-            jumlahBayar += barangTerjual.getBayar();
+        for (int i=0; i<index; i++) {
+            jumlahBayar += barang[i].getBayar();
         }
+        
         if(jumlahBayar >= 500000){
             totalBayar = jumlahBayar - (jumlahBayar * diskon/100);
         }else{
@@ -55,30 +58,32 @@ public class LatihanPer2 {
         
         
         totalBayar += (PPN*totalBayar/100);
-        System.out.println("Visa-Master = 1"
-                + "Debit = 2"
-                + "Cash = 3"
+        System.out.println("Visa-Master = 1\n"
+                + "Debit = 2\n"
+                + "Cash = 3\n"
                 + "Tentukan Cara Bayar : ");
         caraBayar = input.next();
-        if(caraBayar == "1"){
+        if(caraBayar.equals("1")){
             totalBayar += visaMaster * totalBayar / 100;
         }
         
         
         System.out.println("DATA PENJUALAN BARANG\n PT \"PAMULANG TAMA\"\n "
                 + "Nama Kasir:" + namaKasir);
-        System.out.println("==================================================");
+        System.out.println("===============================================================================================");
         System.out.println("No.\t|Kode Barang\t|Nama Barang\t|Harga Barang\t|Jumlah Beli\t|Bayar");
-        System.out.println("==================================================");
+        System.out.println("===============================================================================================");
         index = 0;
         for(DataBarang barangTerjual : barang ){
-            System.out.print(index+1);
-            System.out.print(barangTerjual.getKodeBarang()+"/t");
-            System.out.print(barangTerjual.getNamaBarang()+"/t");
-            System.out.print(barangTerjual.getHargaBarang()+"/t");
-            System.out.print(barangTerjual.getJumlahBeli()+"/t");
-            System.out.print(barangTerjual.getBayar()+"/t");
-            index++;
+            if(barangTerjual != null){
+                System.out.print(index+1 + "\t");
+                System.out.print(barangTerjual.getKodeBarang()+"\t\t");
+                System.out.print(barangTerjual.getNamaBarang()+"\t\t");
+                System.out.print(barangTerjual.getHargaBarang()+"\t");
+                System.out.print(barangTerjual.getJumlahBeli()+"\t\t");
+                System.out.print(barangTerjual.getBayar()+"\t\n");
+                index++;
+            }
         }
         
         System.out.println("Jumlah Bayar \t: "+ jumlahBayar);

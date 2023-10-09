@@ -4,6 +4,9 @@
  */
 package pertemuan3;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonModel;
 
 /**
@@ -556,7 +559,30 @@ public class Penilaian extends javax.swing.JFrame {
 
     private void cetakButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakButtonActionPerformed
         // TODO add your handling code here:
+        Query sql = new Query();
         papan.setText(cetak()); 
+        
+        try {
+            sql.createConnection();
+            String database ="db_universitas";
+            String addQuery = "INSERT INTO data_mahasiswa(nim, nama, nilai_tugas, nilai_uts, nilai_uas, nilai_rata, grade)" + "VALUES (?,?,?,?,?,?,?)";
+            
+            sql.selectDatabase(database);
+            sql.createPreparedStatement(addQuery);
+            sql.preparedStatement.setString(1, nim.getText());
+            sql.preparedStatement.setString(2, nama.getText());
+            sql.preparedStatement.setString(3, tugas.getText());
+            sql.preparedStatement.setString(4, uts.getText());
+            sql.preparedStatement.setString(5, uas.getText());
+            sql.preparedStatement.setString(6, rata.getText());
+            sql.preparedStatement.setString(7, grade.getText());
+            
+            sql.preparedStatement.executeUpdate();
+            
+            System.out.println("tersambung");
+        } catch (SQLException ex) {
+            Logger.getLogger(Penilaian.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cetakButtonActionPerformed
 
     private void cekRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekRegActionPerformed

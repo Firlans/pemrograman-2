@@ -72,6 +72,12 @@ public class MenuLogin extends javax.swing.JInternalFrame {
             }
         });
 
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,6 +162,10 @@ public class MenuLogin extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

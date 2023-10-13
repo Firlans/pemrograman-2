@@ -83,6 +83,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="user">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="password">
     </Component>
